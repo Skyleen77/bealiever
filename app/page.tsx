@@ -7,12 +7,16 @@ import Stats from '@/components/Stats';
 import Stepper from '@/components/Stepper';
 import { RadioGroup } from '@headlessui/react';
 import classNames from 'classnames';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-
-const types: UserType[] = ['particulier', 'commercant'];
+import { types } from './datas';
 
 export default function Home() {
   const [type, setType] = useState<UserType>(types[0]);
+
+  const { data: session } = useSession();
+
+  console.log('session', session);
 
   return (
     <div className="bg-white">
