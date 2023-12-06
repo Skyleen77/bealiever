@@ -11,7 +11,7 @@ import { SanityAdapter } from '@/lib/SanityAdapter';
 import { generateUsername } from 'unique-username-generator';
 import { getUserByEmailQuery } from '@/queries/user';
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
