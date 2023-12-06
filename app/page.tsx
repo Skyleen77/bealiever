@@ -142,7 +142,7 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gray-900/70 mix-blend-multiply" />
             <div className="relative mx-auto max-w-2xl lg:mx-0">
-              <p className="text-2xl font-bold text-white">Notre vision</p>
+              <p className="text-4xl font-bold text-white">Notre vision</p>
               <figure>
                 <blockquote className="mt-6 text-lg font-medium text-white sm:text-xl sm:leading-8">
                   <p>
