@@ -38,7 +38,7 @@ const Navbar = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        {/* <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
             <a
               key={item.name}
@@ -48,10 +48,19 @@ const Navbar = () => {
               {item.name}
             </a>
           ))}
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Log in <span aria-hidden="true">&rarr;</span>
+        </div> */}
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
+          <a
+            href="#"
+            className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
+          >
+            Connexion
+          </a>
+          <a
+            href="#"
+            className="rounded-md bg-primary px-3.5 py-2.5 leading-2 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            Inscription
           </a>
         </div>
       </nav>
@@ -83,7 +92,7 @@ const Navbar = () => {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
+              {/* <div className="space-y-2 py-6">
                 {navigation.map((item) => (
                   <a
                     key={item.name}
@@ -93,14 +102,22 @@ const Navbar = () => {
                     {item.name}
                   </a>
                 ))}
-              </div>
+              </div> */}
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
+                <div className="py-6 flex flex-col gap-y-2">
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Connexion
+                  </a>
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 bg-primary text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  >
+                    Inscription
+                  </a>
+                </div>
               </div>
             </div>
           </div>

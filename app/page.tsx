@@ -1,123 +1,19 @@
 'use client';
 
-import {
-  ArrowPathIcon,
-  CloudArrowUpIcon,
-  FingerPrintIcon,
-  LockClosedIcon,
-} from '@heroicons/react/24/outline';
-import { CheckIcon } from '@heroicons/react/20/solid';
-import classNames from 'classnames';
+import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
+import Stats from '@/components/Stats';
+import Stepper from '@/components/Stepper';
+import { RadioGroup } from '@headlessui/react';
+import classNames from 'classnames';
+import { useState } from 'react';
 
-const features = [
-  {
-    name: 'Push to deploy',
-    description:
-      'Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.',
-    icon: CloudArrowUpIcon,
-  },
-  {
-    name: 'SSL certificates',
-    description:
-      'Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.',
-    icon: LockClosedIcon,
-  },
-  {
-    name: 'Simple queues',
-    description:
-      'Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.',
-    icon: ArrowPathIcon,
-  },
-  {
-    name: 'Advanced security',
-    description:
-      'Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.',
-    icon: FingerPrintIcon,
-  },
-];
-const tiers = [
-  {
-    name: 'Freelancer',
-    id: 'tier-freelancer',
-    href: '#',
-    priceMonthly: '$24',
-    description: 'The essentials to provide your best work for clients.',
-    features: [
-      '5 products',
-      'Up to 1,000 subscribers',
-      'Basic analytics',
-      '48-hour support response time',
-    ],
-    mostPopular: false,
-  },
-  {
-    name: 'Startup',
-    id: 'tier-startup',
-    href: '#',
-    priceMonthly: '$32',
-    description: 'A plan that scales with your rapidly growing business.',
-    features: [
-      '25 products',
-      'Up to 10,000 subscribers',
-      'Advanced analytics',
-      '24-hour support response time',
-      'Marketing automations',
-    ],
-    mostPopular: true,
-  },
-  {
-    name: 'Enterprise',
-    id: 'tier-enterprise',
-    href: '#',
-    priceMonthly: '$48',
-    description: 'Dedicated support and infrastructure for your company.',
-    features: [
-      'Unlimited products',
-      'Unlimited subscribers',
-      'Advanced analytics',
-      '1-hour, dedicated support response time',
-      'Marketing automations',
-    ],
-    mostPopular: false,
-  },
-];
-const faqs = [
-  {
-    id: 1,
-    question: "What's the best thing about Switzerland?",
-    answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-];
-const footerNavigation = {
-  solutions: [
-    { name: 'Hosting', href: '#' },
-    { name: 'Data Services', href: '#' },
-    { name: 'Uptime Monitoring', href: '#' },
-    { name: 'Enterprise Services', href: '#' },
-  ],
-  support: [
-    { name: 'Pricing', href: '#' },
-    { name: 'Documentation', href: '#' },
-    { name: 'Guides', href: '#' },
-    { name: 'API Reference', href: '#' },
-  ],
-  company: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Partners', href: '#' },
-  ],
-  legal: [
-    { name: 'Claim', href: '#' },
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
-  ],
-};
+const types: UserType[] = ['particulier', 'commercant'];
 
-export default function Example() {
+export default function Home() {
+  const [type, setType] = useState<UserType>(types[0]);
+
   return (
     <div className="bg-white">
       <main className="isolate">
@@ -223,217 +119,94 @@ export default function Example() {
 
         {/* Feature section */}
         <div className="mx-auto mt-32 pt-32 max-w-7xl px-6 lg:px-8 border-t">
-          <div className="mx-auto max-w-2xl lg:text-center">
+          <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-base font-semibold leading-7 text-primary">
-              Deploy faster
+              Luttez contre le gaspillage
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Everything you need to deploy your app
-            </p>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Quis tellus eget adipiscing convallis sit sit eget aliquet quis.
-              Suspendisse eget egestas a elementum pulvinar et feugiat blandit
-              at. In mi viverra elit nunc.
+              Quelques chiffres sur le gaspillage non-alimentaire
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-              {features.map((feature) => (
-                <div key={feature.name} className="relative pl-16">
-                  <dt className="text-base font-semibold leading-7 text-gray-900">
-                    <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-                      <feature.icon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    {feature.name}
-                  </dt>
-                  <dd className="mt-2 text-base leading-7 text-gray-600">
-                    {feature.description}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <Stats />
           </div>
         </div>
 
         {/* Testimonial section */}
-        <div className="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-32 max-w-7xl sm:px-6 lg:px-8">
           <div className="relative overflow-hidden bg-gray-900 px-6 py-20 shadow-xl sm:rounded-3xl sm:px-10 sm:py-24 md:px-12 lg:px-20">
             <img
-              className="absolute inset-0 h-full w-full object-cover brightness-150 saturate-0"
-              src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80"
+              className="absolute inset-0 h-full w-full object-cover"
+              src="/assets/save-planet.jpg"
               alt=""
             />
-            <div className="absolute inset-0 bg-gray-900/90 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gray-900/70 mix-blend-multiply" />
             <div className="relative mx-auto max-w-2xl lg:mx-0">
-              <img
-                className="h-12 w-auto"
-                src="https://tailwindui.com/img/logos/workcation-logo-white.svg"
-                alt=""
-              />
+              <p className="text-2xl font-bold text-white">Notre vision</p>
               <figure>
-                <blockquote className="mt-6 text-lg font-semibold text-white sm:text-xl sm:leading-8">
+                <blockquote className="mt-6 text-lg font-medium text-white sm:text-xl sm:leading-8">
                   <p>
-                    “Amet amet eget scelerisque tellus sit neque faucibus non
-                    eleifend. Integer eu praesent at a. Ornare arcu gravida
-                    natoque erat et cursus tortor consequat at. Vulputate
-                    gravida sociis enim nullam ultricies habitant malesuada
-                    lorem ac.”
+                    “Nous donnons une seconde vie aux invendus en les mettant en
+                    valeur auprès de milliers de consommateurs. Ensemble,
+                    engageons-nous dans une lutte innovante contre le gaspillage
+                    non-alimentaire et créons un avenir où chaque objet trouve
+                    son utilisateur et contribue à un monde plus durable.”
                   </p>
                 </blockquote>
                 <figcaption className="mt-6 text-base text-white">
-                  <div className="font-semibold">Judith Black</div>
-                  <div className="mt-1">CEO of Tuple</div>
+                  <div className="mt-1">Bealiever</div>
                 </figcaption>
               </figure>
             </div>
           </div>
         </div>
 
-        {/* FAQs */}
-        <div className="mx-auto max-w-2xl divide-y divide-gray-900/10 px-6 pb-8 sm:pb-24 sm:pt-12 lg:max-w-7xl lg:px-8 lg:pb-32">
-          <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">
-            Frequently asked questions
-          </h2>
-          <dl className="mt-10 space-y-8 divide-y divide-gray-900/10">
-            {faqs.map((faq) => (
-              <div
-                key={faq.id}
-                className="pt-8 lg:grid lg:grid-cols-12 lg:gap-8"
-              >
-                <dt className="text-base font-semibold leading-7 text-gray-900 lg:col-span-5">
-                  {faq.question}
-                </dt>
-                <dd className="mt-4 lg:col-span-7 lg:mt-0">
-                  <p className="text-base leading-7 text-gray-600">
-                    {faq.answer}
-                  </p>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        {/* CTA section */}
-        <div className="relative -z-10 mt-32 px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Boost your productivity.
-              <br />
-              Start using our app today.
+        <div className="mt-32 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-base font-semibold leading-7 text-primary">
+              Parcours utilisateur
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600">
-              Incididunt sint fugiat pariatur cupidatat consectetur sit cillum
-              anim id veniam aliqua proident excepteur commodo do ea.
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Un parcours simple et rapide
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              >
-                Get started
-              </a>
-              <a
-                href="#"
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Learn more <span aria-hidden="true">→</span>
-              </a>
-            </div>
+          </div>
+
+          <div className="mt-16 flex justify-center">
+            <RadioGroup
+              value={type}
+              onChange={setType}
+              className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-sm font-semibold leading-5 ring-1 ring-inset ring-gray-200"
+            >
+              <RadioGroup.Label className="sr-only">
+                Type d'utilisateur
+              </RadioGroup.Label>
+              {types.map((option) => (
+                <RadioGroup.Option
+                  key={option}
+                  value={option}
+                  className={({ checked }) =>
+                    classNames(
+                      checked ? 'bg-primary text-white' : 'text-gray-500',
+                      'cursor-pointer rounded-full px-4 py-2 capitalize',
+                    )
+                  }
+                >
+                  <span>{option}</span>
+                </RadioGroup.Option>
+              ))}
+            </RadioGroup>
+          </div>
+
+          <div className="mt-10">
+            <Stepper type={type} />
           </div>
         </div>
+
+        {/* FAQs */}
+        <FAQ />
       </main>
 
-      {/* Footer */}
-      <div className="mx-auto mt-32 max-w-7xl px-6 lg:px-8">
-        <footer
-          aria-labelledby="footer-heading"
-          className="relative border-t border-gray-900/10 py-24 sm:mt-56 sm:py-32"
-        >
-          <h2 id="footer-heading" className="sr-only">
-            Footer
-          </h2>
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-            <img className="h-10" src="/assets/logo/full.svg" alt="Bealiever" />
-            <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                    Solutions
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {footerNavigation.solutions.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                    Support
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {footerNavigation.support.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="md:grid md:grid-cols-2 md:gap-8">
-                <div>
-                  <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                    Company
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {footerNavigation.company.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mt-10 md:mt-0">
-                  <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                    Legal
-                  </h3>
-                  <ul role="list" className="mt-6 space-y-4">
-                    {footerNavigation.legal.map((item) => (
-                      <li key={item.name}>
-                        <a
-                          href={item.href}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 }
