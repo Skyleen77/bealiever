@@ -1,16 +1,22 @@
+'use client';
+
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { useState } from 'react';
 
-const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
-];
+// const navigation = [
+//   { name: 'Product', href: '#' },
+//   { name: 'Features', href: '#' },
+//   { name: 'Marketplace', href: '#' },
+//   { name: 'Company', href: '#' },
+// ];
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { status } = useSession();
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -50,18 +56,29 @@ const Navbar = () => {
           ))}
         </div> */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-          <a
-            href="#"
-            className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
-          >
-            Connexion
-          </a>
-          <a
-            href="#"
-            className="rounded-md bg-primary px-3.5 py-2.5 leading-2 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            Inscription
-          </a>
+          {status === 'unauthenticated' ? (
+            <>
+              <Link
+                href="/auth/sign-in"
+                className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
+              >
+                Connexion
+              </Link>
+              <Link
+                href="/auth/sign-up"
+                className="rounded-md bg-primary px-3.5 py-2.5 leading-2 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                Inscription
+              </Link>
+            </>
+          ) : status === 'authenticated' ? (
+            <Link
+              href="/auth/sign-out"
+              className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
+            >
+              Deconnexion
+            </Link>
+          ) : null}
         </div>
       </nav>
       <Dialog
@@ -105,18 +122,29 @@ const Navbar = () => {
               </div> */}
               <div className="py-6">
                 <div className="py-6 flex flex-col gap-y-2">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Connexion
-                  </a>
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 bg-primary text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                  >
-                    Inscription
-                  </a>
+                  {status === 'unauthenticated' ? (
+                    <>
+                      <Link
+                        href="/auth/sign-in"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                      >
+                        Connexion
+                      </Link>
+                      <Link
+                        href="/auth/sign-up"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 bg-primary text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      >
+                        Inscription
+                      </Link>
+                    </>
+                  ) : status === 'authenticated' ? (
+                    <Link
+                      href="/auth/sign-out"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      Deconnexion
+                    </Link>
+                  ) : null}
                 </div>
               </div>
             </div>
