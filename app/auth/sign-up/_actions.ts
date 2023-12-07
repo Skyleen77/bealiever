@@ -55,7 +55,7 @@ export async function register(formData: FormData, type: UserType) {
       status: 422,
       data: {
         error:
-          'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre',
+          'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial',
       },
     };
   }

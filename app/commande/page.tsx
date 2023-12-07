@@ -235,7 +235,7 @@ export default function Checkout() {
                     type="submit"
                     className="w-full rounded-md border border-transparent bg-primary px-4 py-3 text-base font-medium text-white shadow-sm hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-50"
                   >
-                    Commander
+                    Payer
                   </button>
                 </div>
               </div>

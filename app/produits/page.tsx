@@ -19,12 +19,9 @@ const filters = [
     id: 'etat',
     name: 'État',
     options: [
-      { value: 'neuf', label: 'Neuf' },
       { value: 'tresBonEtat', label: 'Très bon état' },
       { value: 'bonEtat', label: 'Bon état' },
       { value: 'satisfaisant', label: 'Satisfaisant' },
-      { value: 'abime', label: 'Abimé' },
-      { value: 'tresAbime', label: 'Très abimé' },
     ],
   },
   {
