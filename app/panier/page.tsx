@@ -141,7 +141,7 @@ export default function ShoppingCart() {
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-primary px-4 py-3 text-base font-medium text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
-                Confirmer votre commande
+                Commander
               </button>
             </div>
           </section>

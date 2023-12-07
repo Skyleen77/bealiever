@@ -110,7 +110,7 @@ export default function SignIn() {
               </div>
               <div className="relative flex justify-center text-sm font-medium leading-6">
                 <span className="bg-white px-6 text-gray-900">
-                  Ou s'inscrire avec
+                  Ou se connecter avec
                 </span>
               </div>
             </div>
