@@ -26,7 +26,7 @@ const deliveryMethods = [
   },
 ];
 const paymentMethods = [
-  { id: 'credit-card', title: 'Carte bleu' },
+  { id: 'credit-card', title: 'Carte bleue' },
   { id: 'paypal', title: 'PayPal' },
 ];
 
