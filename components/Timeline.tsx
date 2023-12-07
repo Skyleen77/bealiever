@@ -1,50 +1,64 @@
 const timeline = [
   {
-    name: 'Founded company',
+    name: 'Lancement projet',
     description:
-      'Nihil aut nam. Dignissimos a pariatur et quos omnis. Aspernatur asperiores et dolorem dolorem optio voluptate repudiandae.',
-    date: 'Aug 2021',
-    dateTime: '2021-08',
+      "<p>Marketing : Etude de marché, <br />Dev : MVP (Landing Page, Authentification, Ajout des produits, Commande Client, Liste des Commandes)</p>",
+    date: 'Dec 2023',
+    dateTime: '2023-12',
   },
   {
-    name: 'Secured $65m in funding',
+    name: 'Etude et Développement',
     description:
-      'Provident quia ut esse. Vero vel eos repudiandae aspernatur. Cumque minima impedit sapiente a architecto nihil.',
-    date: 'Dec 2021',
-    dateTime: '2021-12',
+      "<p>Marketing : Etude de marché, Recherche Partenariat, <br />Dev : Finition MVP, Vérification Commerçants, Paiement Sécurisé</p>",
+    date: 'Jan 2024',
+    dateTime: '2024-01',
   },
   {
-    name: 'Released beta',
+    name: 'Partenariat et Développement',
     description:
-      'Sunt perspiciatis incidunt. Non necessitatibus aliquid. Consequatur ut officiis earum eum quia facilis. Hic deleniti dolorem quia et.',
-    date: 'Feb 2022',
-    dateTime: '2022-02',
+    "<p>Marketing : Recherche Partenariat, <br />Dev : Géolocalisation, Notifications</p>",
+    date: 'Fev 2024',
+    dateTime: '2024-02',
   },
   {
-    name: 'Global launch of product',
+    name: 'Partenariat et Développement',
     description:
-      'Ut ipsa sint distinctio quod itaque nam qui. Possimus aut unde id architecto voluptatem hic aut pariatur velit.',
-    date: 'Dec 2022',
-    dateTime: '2022-12',
+    "<p>Marketing : Recherche Partenariat, <br />Dev : Filtres</p>",
+    date: 'Mar 2024',
+    dateTime: '2024-03',
+  },
+  {
+    name: 'Lancement du Produit',
+    description:
+    "<p>Marketing : Communication, <br />Dev : Tests</p>",
+    date: 'Avr 2024',
+    dateTime: '2024-04',
+  },
+  {
+    name: 'Retours utilisateurs',
+    description:
+    "",
+    date: 'Mai 2024',
+    dateTime: '2024-05',
   },
 ];
 
 const Timeline = () => {
   return (
-    <div className="mx-auto -mt-8 max-w-7xl px-6 lg:px-8">
+    <div className="mx-auto mt-32 max-w-7xl px-6 lg:px-8">
       <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
         {timeline.map((item) => (
           <div key={item.name}>
             <time
               dateTime={item.dateTime}
-              className="flex items-center text-sm font-semibold leading-6 text-indigo-600"
+              className="flex items-center text-sm font-semibold leading-6 text-primary"
             >
               <svg
                 viewBox="0 0 4 4"
                 className="mr-4 h-1 w-1 flex-none"
                 aria-hidden="true"
               >
-                <circle cx={2} cy={2} r={2} fill="currentColor" />
+                <circle className="fill-primary" cx={2} cy={2} r={2}  />
               </svg>
               {item.date}
               <div
@@ -55,9 +69,10 @@ const Timeline = () => {
             <p className="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">
               {item.name}
             </p>
-            <p className="mt-1 text-base leading-7 text-gray-600">
-              {item.description}
-            </p>
+            <div dangerouslySetInnerHTML={{
+              __html: item.description
+            }} className="mt-1 text-base leading-7 text-gray-600">
+            </div>
           </div>
         ))}
       </div>
