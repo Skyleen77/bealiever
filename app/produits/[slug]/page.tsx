@@ -31,7 +31,7 @@ export default function ProductDetail({
     <div className="bg-gray-50">
       <Navbar fixed />
 
-      <main className="mt-20">
+      <main className="mt-32">
         {/* Product */}
         <div className="bg-white">
           <div className="justify-center mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 sm:pb-32 sm:pt-24 lg:max-w-7xl flex lg:flex-row flex-col-reverse lg:gap-x-8 lg:px-8">
