@@ -1,6 +1,7 @@
 'use client';
 
 import Navbar from '@/components/Navbar';
+import { useCart } from '@/context/CartContext';
 import useProducts from '@/hooks/useProducts';
 import { getPercentage } from '@/utils/discount';
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
@@ -11,6 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 import classNames from 'classnames';
 import React, { Fragment, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const filters = [
   {
@@ -36,59 +38,12 @@ const filters = [
     ],
   },
 ];
-// const products = [
-//   {
-//     id: 1,
-//     name: 'Basic Tee 8-Pack',
-//     href: '#',
-//     basePrice: '256 €',
-//     price: '200 €',
-//     percent: '20%',
-//     description:
-//       'Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.',
-//     options: 'Neuf',
-//     imageSrc:
-//       'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg',
-//     imageAlt:
-//       'Eight shirts arranged on table in black, olive, grey, blue, white, red, mustard, and green.',
-//   },
-//   {
-//     id: 2,
-//     name: 'Basic Tee',
-//     href: '#',
-//     price: '22 €',
-//     basePrice: '32 €',
-//     percent: '20%',
-//     description:
-//       'Look like a visionary CEO and wear the same black t-shirt every day.',
-//     options: 'Très bon état',
-//     imageSrc:
-//       'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg',
-//     imageAlt: 'Front of plain black t-shirt.',
-//   },
-//   {
-//     id: 3,
-//     name: 'Basic Tee',
-//     href: '#',
-//     price: '22 €',
-//     basePrice: '32 €',
-//     percent: '20%',
-//     description:
-//       'Look like a visionary CEO and wear the same black t-shirt every day.',
-//     options: 'Satisfaisant',
-//     imageSrc:
-//       'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg',
-//     imageAlt: 'Front of plain black t-shirt.',
-//   },
-//   // More products...
-// ];
 
 const Produits = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const { data: products } = useProducts();
-
-  console.log('products', products);
+  const { addToCart } = useCart();
 
   return (
     <div>
@@ -175,7 +130,7 @@ const Produits = () => {
                                     name={`${section.id}[]`}
                                     defaultValue={option.value}
                                     type="checkbox"
-                                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                                   />
                                   <label
                                     htmlFor={`${section.id}-${optionIdx}-mobile`}
@@ -322,7 +277,13 @@ const Produits = () => {
                   </div>
 
                   <div className="p-4 w-full">
-                    <button className="rounded-md w-full bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                    <button
+                      onClick={() => {
+                        addToCart(product?._id);
+                        toast.success(product?.name + ' ajouté au panier');
+                      }}
+                      className="rounded-md w-full bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    >
                       Ajouter au panier
                     </button>
                   </div>
