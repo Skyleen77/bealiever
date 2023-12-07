@@ -15,6 +15,7 @@ export const userBody = groq`{
   emailVerified,
   image,
   password,
+  company,
   role
 }`;
 
