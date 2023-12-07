@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getProduct } from '../_actions';
 import { getPercentage } from '@/utils/discount';
+import { useCart } from '@/context/CartContext';
+import { toast } from 'react-toastify';
 
 export default function ProductDetail({
   params,
@@ -13,6 +15,8 @@ export default function ProductDetail({
 }) {
   const router = useRouter();
   const [product, setProduct] = useState<any>(null);
+
+  const { addToCart } = useCart();
 
   useEffect(() => {
     if (!params.slug) return router.push('/produits');
@@ -60,14 +64,14 @@ export default function ProductDetail({
                   </p>
                 </div>
 
-                <div>
-                  <p className="text-base italic text-gray-900 sm:text-xl">
+                <div className="mt-2">
+                  <p className="text-base italic text-gray-600">
                     {product?.condition}
                   </p>
                 </div>
 
                 <div>
-                  <p className="text-lg text-gray-900 sm:text-xl">
+                  <p className="text-lg text-gray-900">
                     Raison invendu : {product?.reason}
                   </p>
                 </div>
@@ -79,7 +83,13 @@ export default function ProductDetail({
                 </div>
 
                 <div className="mt-10">
-                  <button className="flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+                  <button
+                    onClick={() => {
+                      addToCart(product?._id);
+                      toast.success(product?.name + ' ajouté au panier');
+                    }}
+                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-50"
+                  >
                     Ajouter au panier
                   </button>
                 </div>

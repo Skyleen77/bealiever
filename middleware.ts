@@ -7,5 +7,5 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ['/produits/:path*'],
+  matcher: ['/produits/:path*', '/cart'],
 };
