@@ -276,11 +276,11 @@ const Produits = () => {
                   className="relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white"
                 >
                   <div className="relative group">
-                    <div className="aspect-square bg-gray-200 sm:aspect-none group-hover:opacity-75">
+                    <div className="aspect-[1/1] bg-gray-200 sm:aspect-none group-hover:opacity-75">
                       <img
                         src={product?.image?.asset?.url}
                         alt={product?.name}
-                        className="h-full w-full aspect-square object-cover object-center sm:h-full sm:w-full"
+                        className="h-full w-full aspect-[1/1] object-cover object-center sm:h-full sm:w-full"
                       />
                     </div>
                     <div className="flex flex-1 flex-col space-y-2 p-4">
