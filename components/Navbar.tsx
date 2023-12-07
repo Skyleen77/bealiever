@@ -1,7 +1,7 @@
 'use client';
 
 import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -25,7 +25,7 @@ const Navbar = () => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Bealiever</span>
             <img
               className="h-8 w-auto"
@@ -70,14 +70,31 @@ const Navbar = () => {
               >
                 Inscription
               </Link>
+              <div className="ml-4 flow-root lg:ml-6">
+                                    <a href="/cart" className="group -m-2 flex items-center p-2">
+                                        <ShoppingBagIcon
+                                            className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                                            aria-hidden="true"
+                                        />
+                                        <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">3</span>
+                                    </a>
+                                </div>
             </>
           ) : status === 'authenticated' ? (
-            <Link
-              href="/auth/sign-out"
-              className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
-            >
-              Deconnexion
-            </Link>
+            <>
+              <Link
+                href="/auth/sign-out"
+                className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
+              >
+                Deconnexion
+              </Link>
+              <Link
+                href="/cart"
+                className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
+              >
+                Panier
+              </Link>
+            </>
           ) : null}
         </div>
       </nav>
