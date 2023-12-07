@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import Stats from '@/components/Stats';
 import Stepper from '@/components/Stepper';
+import Timeline from '@/components/Timeline';
 import { RadioGroup } from '@headlessui/react';
 import classNames from 'classnames';
 import { useSession } from 'next-auth/react';
@@ -208,6 +209,9 @@ export default function Home() {
 
         {/* FAQs */}
         <FAQ />
+
+        {/* ROADMAP */}
+        <Timeline />
       </main>
 
       <Footer />
