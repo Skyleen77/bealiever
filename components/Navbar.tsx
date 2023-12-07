@@ -2,6 +2,7 @@
 
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, ShoppingBagIcon } from '@heroicons/react/24/outline';
+import classNames from 'classnames';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -13,26 +14,31 @@ import { useState } from 'react';
 //   { name: 'Company', href: '#' },
 // ];
 
-const Navbar = () => {
+const Navbar = ({ fixed = false }: { fixed?: boolean }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { status } = useSession();
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header
+      className={classNames(
+        'inset-x-0 top-0 z-50',
+        fixed ? 'fixed bg-white border-b border-gray-200' : 'absolute',
+      )}
+    >
       <nav
         className="flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Bealiever</span>
             <img
               className="h-8 w-auto"
               src="/assets/logo/full.svg"
               alt="Bealiever"
             />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button

@@ -12,6 +12,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { types } from './datas';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Home() {
   const [type, setType] = useState<UserType>(types[0]);
@@ -57,18 +58,18 @@ export default function Home() {
                   anti-gaspillage !
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
-                  <a
-                    href="#"
+                  <Link
+                    href="/auth/sign-up"
                     className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     Commencer maintenant
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="#"
                     className="text-sm font-semibold leading-6 text-gray-900"
                   >
                     En savoir plus <span aria-hidden="true">→</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -153,7 +154,7 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gray-900/70 mix-blend-multiply" />
             <div className="relative mx-auto max-w-2xl lg:mx-0">
-              <p className="text-2xl font-bold text-white">Notre vision</p>
+              <p className="text-4xl font-bold text-white">Notre vision</p>
               <figure>
                 <blockquote className="mt-6 text-lg font-medium text-white sm:text-xl sm:leading-8">
                   <p>
