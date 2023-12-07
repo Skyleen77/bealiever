@@ -37,7 +37,7 @@ export default function SignIn() {
                 password,
                 callbackUrl: searchParams.get('callbackUrl')
                   ? decodeURIComponent(searchParams.get('callbackUrl')!)
-                  : '/',
+                  : '/produits',
               });
             }}
           >
@@ -121,7 +121,7 @@ export default function SignIn() {
                   signIn('google', {
                     callbackUrl: searchParams.get('callbackUrl')
                       ? decodeURIComponent(searchParams.get('callbackUrl')!)
-                      : '/',
+                      : '/produits',
                   })
                 }
                 className="flex w-full items-center justify-center gap-3 rounded-md bg-[#4285F4] hover:opacity-80 px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1D9BF0]"

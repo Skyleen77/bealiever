@@ -9,15 +9,21 @@ import Timeline from '@/components/Timeline';
 import { RadioGroup } from '@headlessui/react';
 import classNames from 'classnames';
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { types } from './datas';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [type, setType] = useState<UserType>(types[0]);
 
-  const { data: session } = useSession();
+  const router = useRouter();
+  const { status } = useSession();
 
-  console.log('session', session);
+  useEffect(() => {
+    if (status === 'authenticated') {
+      router.push('/produits');
+    }
+  }, [status]);
 
   return (
     <div className="bg-white">
