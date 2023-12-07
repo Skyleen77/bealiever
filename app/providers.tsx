@@ -1,25 +1,28 @@
 'use client';
 
+import { CartProvider } from '@/context/CartContext';
 import { SessionProvider } from 'next-auth/react';
 import { ToastContainer } from 'react-toastify';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider>
-      {children}
+      <CartProvider>
+        {children}
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+        <ToastContainer
+          position="top-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </CartProvider>
     </SessionProvider>
   );
 };

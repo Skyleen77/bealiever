@@ -1,7 +1,13 @@
 'use client';
 
+import { useCart } from '@/context/CartContext';
 import { Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+  Bars3Icon,
+  XMarkIcon,
+  ShoppingBagIcon,
+} from '@heroicons/react/24/outline';
+import classNames from 'classnames';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -13,28 +19,50 @@ import { useState } from 'react';
 //   { name: 'Company', href: '#' },
 // ];
 
-const Navbar = () => {
+const Navbar = ({ fixed = false }: { fixed?: boolean }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { status } = useSession();
+  const { cart } = useCart();
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header
+      className={classNames(
+        'inset-x-0 top-0 z-50',
+        fixed ? 'fixed bg-white border-b border-gray-200' : 'absolute',
+      )}
+    >
       <nav
         className="flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link
+            href={status === 'authenticated' ? '/produits' : '/'}
+            className="-m-1.5 p-1.5"
+          >
             <span className="sr-only">Bealiever</span>
             <img
               className="h-8 w-auto"
               src="/assets/logo/full.svg"
               alt="Bealiever"
             />
-          </a>
+          </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex lg:hidden gap-x-5">
+          {status === 'authenticated' && (
+            <Link href="/panier" className="group -m-2 flex items-center p-2">
+              <ShoppingBagIcon
+                className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                aria-hidden="true"
+              />
+              <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                {cart.length}
+              </span>
+              <span className="sr-only">produits dans le panier</span>
+            </Link>
+          )}
+
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -72,12 +100,25 @@ const Navbar = () => {
               </Link>
             </>
           ) : status === 'authenticated' ? (
-            <Link
-              href="/auth/sign-out"
-              className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
-            >
-              Deconnexion
-            </Link>
+            <>
+              <Link href="/panier" className="group -m-2 flex items-center p-2">
+                <ShoppingBagIcon
+                  className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                  aria-hidden="true"
+                />
+                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                  {cart.length}
+                </span>
+                <span className="sr-only">produits dans le panier</span>
+              </Link>
+
+              <Link
+                href="/auth/sign-out"
+                className="text-sm px-3.5 py-2.5 font-semibold leading-2 text-gray-900"
+              >
+                Deconnexion
+              </Link>
+            </>
           ) : null}
         </div>
       </nav>
@@ -103,7 +144,7 @@ const Navbar = () => {
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">Fermer le menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
